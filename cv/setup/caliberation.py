@@ -1,6 +1,6 @@
-import cv2
 import numpy as np
 import glob
+import cv2
 
 # Setup checkerboard dimensions
 CHECKERBOARD = (9, 6)  # 9 inner corners per row, 6 per column
@@ -14,13 +14,19 @@ objp *= SQUARE_SIZE
 # Arrays to store 3D and 2D points
 objpoints = []  # 3D points
 imgpoints = []  # 2D points
-
 # Load all images
-images = glob.glob('calib/rcam/*.png')  # change path as needed
+images = glob.glob('rcam/*.png')
+
+if not images:
+    raise ValueError("No images found. Check your folder path or file extension.")
 
 for fname in images:
     img = cv2.imread(fname)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # Save image size from the first image
+    if 'img_shape' not in locals():
+        img_shape = gray.shape[::-1]  # width, height
 
     # Find corners
     ret, corners = cv2.findChessboardCorners(gray, CHECKERBOARD, None)
@@ -31,15 +37,19 @@ for fname in images:
                                     criteria=(cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001))
         imgpoints.append(corners2)
 
-        # Draw corners
+        # Draw and show
         cv2.drawChessboardCorners(img, CHECKERBOARD, corners2, ret)
         cv2.imshow('img', img)
         cv2.waitKey(100)
 
 cv2.destroyAllWindows()
 
+# Check if any corners were detected
+if not objpoints:
+    raise ValueError("No checkerboard corners were detected in any image.")
+
 # Calibrate
-ret, K, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
+ret, K, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, img_shape, None, None)
 
 print("Camera matrix:\n", K)
 print("Distortion coefficients:\n", dist)

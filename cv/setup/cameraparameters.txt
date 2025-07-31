@@ -1,0 +1,21 @@
+#lcam parameters
+
+2025-07-31 14:47:15.287 Python[48232:827894] +[IMKClient subclass]: chose IMKClient_Modern
+2025-07-31 14:47:15.287 Python[48232:827894] +[IMKInputSession subclass]: chose IMKInputSession_Modern
+Camera matrix:
+ [[1.07264031e+03 0.00000000e+00 4.71348514e+02]
+ [0.00000000e+00 1.07211076e+03 7.39664190e+02]
+ [0.00000000e+00 0.00000000e+00 1.00000000e+00]]
+Distortion coefficients:
+ [[-0.36654802  0.178266   -0.00218501  0.00145207 -0.0481639 ]]
+
+ #rcam parameters
+
+ 2025-07-31 15:58:17.596 Python[55000:913111] +[IMKClient subclass]: chose IMKClient_Modern
+2025-07-31 15:58:17.596 Python[55000:913111] +[IMKInputSession subclass]: chose IMKInputSession_Modern
+Camera matrix:
+ [[1.04368106e+03 0.00000000e+00 5.34512749e+02]
+ [0.00000000e+00 1.03777455e+03 7.15349756e+02]
+ [0.00000000e+00 0.00000000e+00 1.00000000e+00]]
+Distortion coefficients:
+ [[-0.31358791 -0.02378194  0.00210126 -0.0022138   0.21594487]]
