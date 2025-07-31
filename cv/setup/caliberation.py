@@ -16,7 +16,7 @@ objpoints = []  # 3D points
 imgpoints = []  # 2D points
 
 # Load all images
-images = glob.glob('calib/cam1/*.png')  # change path as needed
+images = glob.glob('calib/rcam/*.png')  # change path as needed
 
 for fname in images:
     img = cv2.imread(fname)
